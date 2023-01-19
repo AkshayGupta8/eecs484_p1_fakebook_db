@@ -5,14 +5,16 @@ CREATE TABLE Users(
     year_of_birth INTEGER,
     month_of_birth INTEGER,
     day_of_birth INTEGER,
-    gender VARCHAR2(100)
+    gender VARCHAR2(100),
+    PRIMARY KEY (user_id)
 );
 
 
 CREATE TABLE Friends(
-    user1_id INTEGER NOT NULL
-    user2_id INTEGER NOT NULL
+    user1_id INTEGER NOT NULL,
+    user2_id INTEGER NOT NULL,
     -- TODO implement friends trigger. See spec
+    PRIMARY KEY (user1_id, user2_id)
 );
 
 CREATE TABLE Cities(
@@ -20,11 +22,13 @@ CREATE TABLE Cities(
     city_name VARCHAR2(100) NOT NULL,
     state_name VARCHAR2(100) NOT NULL,
     country_name VARCHAR2(100) NOT NULL,
+    PRIMARY KEY (city_id)
 );
 
 CREATE TABLE User_Current_Cities(
     user_id INTEGER NOT NULL,
-    hometown_city_id INTEGER NOT NULL
+    hometown_city_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, hometown_city_id)
 );
 
 
@@ -39,22 +43,24 @@ CREATE TABLE Messages(
     sender_id INTEGER NOT NULL,
     receiver_id INTEGER NOT NULL,
     message_content VARCHAR2(2000) NOT NULL,
-    sent_time TIMESTAMP NOT NULL
+    sent_time TIMESTAMP NOT NULL,
+    PRIMARY KEY (message_id)
 );
 
 CREATE TABLE Programs(
     program_id INTEGER NOT NULL,
     institution VARCHAR2(100) NOT NULL,
     concentration VARCHAR2(100) NOT NULL,
-    degree VARCHAR2(100) NOT NULL
+    degree VARCHAR2(100) NOT NULL,
+    PRIMARY KEY (program_id)
 );
 
-CREATE TABLE 
 
 CREATE TABLE Education(
     user_id INTEGER NOT NULL,
     program_id INTEGER NOT NULL,
-    program_year INTEGER NOT NULL
+    program_year INTEGER NOT NULL,
+    PRIMARY KEY (user_id)
 );
 
 CREATE TABLE User_Events(
