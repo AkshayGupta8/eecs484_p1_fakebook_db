@@ -1,3 +1,4 @@
+-- done
 CREATE TABLE Users(
     user_id INTEGER NOT NULL,
     first_name VARCHAR2(100) NOT NULL,
@@ -9,13 +10,18 @@ CREATE TABLE Users(
     PRIMARY KEY (user_id)
 );
 
+-- done
 CREATE TABLE Friends(
     user1_id INTEGER NOT NULL,
     user2_id INTEGER NOT NULL,
-    -- TODO implement friends trigger. See spec
+    FOREIGN KEY (user1_id) REFERENCES Users (user_id)
+    FOREIGN KEY (user2_id) REFERENCES Users (user_id)
+    
+    -- friends trigger constraint
     PRIMARY KEY (user1_id, user2_id)
 );
 
+-- done
 CREATE TABLE Cities(
     city_id INTEGER NOT NULL,
     city_name VARCHAR2(100) NOT NULL,
@@ -24,22 +30,25 @@ CREATE TABLE Cities(
     PRIMARY KEY (city_id)
 );
 
+-- done
 CREATE TABLE User_Current_Cities(
     user_id INTEGER NOT NULL,
     current_city_id INTEGER NOT NULL,
-    PRIMARY KEY (user_id, current_city_id),
-    FOREIGN KEY (user_id) REFERENCES Users
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES Users (user_id)
     FOREIGN KEY (current_city_id) REFERENCES Cities (city_id)
 );
 
+-- done
 CREATE TABLE User_Hometown_Cities(
     user_id INTEGER NOT NULL,
     hometown_city_id INTEGER NOT NULL,
-    PRIMARY KEY (user_id, hometown_city_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES Users (user_id),
     FOREIGN KEY (hometown_city_id) REFERENCES Cities(city_id)
 );
 
+-- done
 CREATE TABLE Messages(
     message_id INTEGER NOT NULL,
     sender_id INTEGER NOT NULL,
@@ -51,22 +60,26 @@ CREATE TABLE Messages(
     FOREIGN KEY (receiver_id) REFERENCES Users(user_id)
 );
 
+-- done
 CREATE TABLE Programs(
     program_id INTEGER NOT NULL,
     institution VARCHAR2(100) NOT NULL,
     concentration VARCHAR2(100) NOT NULL,
     degree VARCHAR2(100) NOT NULL,
+    UNIQUE (institution, concentration, degree)
     PRIMARY KEY (program_id)
 );
 
+-- done
 CREATE TABLE Education(
     user_id INTEGER NOT NULL,
     program_id INTEGER NOT NULL,
     program_year INTEGER NOT NULL,
-    PRIMARY KEY (user_id),
+    PRIMARY KEY (user_id, program_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
+-- TODO
 CREATE TABLE User_Events(
     event_id INTEGER NOT NULL,
     event_creator_id INTEGER NOT NULL,
@@ -84,6 +97,7 @@ CREATE TABLE User_Events(
     FOREIGN KEY (event_creator_id) REFERENCES Users(user_id)
 );
 
+-- TODO
 CREATE TABLE Participants(
     event_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
@@ -96,6 +110,7 @@ CREATE TABLE Participants(
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
+-- TODO
 CREATE TABLE Albums(
     album_id INTEGER NOT NULL,
     album_owner_id INTEGER NOT NULL,
@@ -111,6 +126,7 @@ CREATE TABLE Albums(
     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself')),
 );
 
+-- TODO
 CREATE TABLE Photos (
     photo_id INTEGER NOT NULL,
     album_id INTEGER NOT NULL,
@@ -121,6 +137,7 @@ CREATE TABLE Photos (
     PRIMARY KEY (photo_id)
 );
 
+-- TODO
 CREATE TABLE Tags (
     tag_photo_id INTEGER NOT NULL,
     tag_subject_id INTEGER NOT NULL,
