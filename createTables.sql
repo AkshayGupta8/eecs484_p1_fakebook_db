@@ -9,7 +9,6 @@ CREATE TABLE Users(
     PRIMARY KEY (user_id)
 );
 
-
 CREATE TABLE Friends(
     user1_id INTEGER NOT NULL,
     user2_id INTEGER NOT NULL,
@@ -27,16 +26,19 @@ CREATE TABLE Cities(
 
 CREATE TABLE User_Current_Cities(
     user_id INTEGER NOT NULL,
-    hometown_city_id INTEGER NOT NULL,
-    PRIMARY KEY (user_id, hometown_city_id)
+    current_city_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, current_city_id),
+    FOREIGN KEY (user_id) REFERENCES Users
+    FOREIGN KEY (current_city_id) REFERENCES Cities (city_id)
 );
-
 
 CREATE TABLE User_Hometown_Cities(
-    user_id INTEGER NOT NULL
-    hometown_city_id INTEGER NOT NULL
+    user_id INTEGER NOT NULL,
+    hometown_city_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, hometown_city_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (hometown_city_id) REFERENCES Cities(city_id)
 );
-
 
 CREATE TABLE Messages(
     message_id INTEGER NOT NULL,
@@ -44,7 +46,9 @@ CREATE TABLE Messages(
     receiver_id INTEGER NOT NULL,
     message_content VARCHAR2(2000) NOT NULL,
     sent_time TIMESTAMP NOT NULL,
-    PRIMARY KEY (message_id)
+    PRIMARY KEY (message_id),
+    FOREIGN KEY (sender_id) REFERENCES Users(user_id),
+    FOREIGN KEY (receiver_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE Programs(
@@ -55,12 +59,12 @@ CREATE TABLE Programs(
     PRIMARY KEY (program_id)
 );
 
-
 CREATE TABLE Education(
     user_id INTEGER NOT NULL,
     program_id INTEGER NOT NULL,
     program_year INTEGER NOT NULL,
-    PRIMARY KEY (user_id)
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE User_Events(
@@ -75,13 +79,18 @@ CREATE TABLE User_Events(
     event_address VARCHAR2(2000),
     event_city_id INTEGER NOT NULL,
     event_start_time TIMESTAMP,
-    event_end_time TIMESTAMP
+    event_end_time TIMESTAMP,
+    PRIMARY KEY (event_id),
+    FOREIGN KEY (event_creator_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE Participants(
     event_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
-    confirmation VARCHAR2(100) NOT NULL
+    confirmation VARCHAR2(100) NOT NULL,
+    CHECK (confirmation in ('Attending','Unsure','Decline', 'Not_Replied')),
+    PRIMARY KEY (event_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
     -- TODO: confirmation must be either 
         -- Attending
         -- Unsure
@@ -114,5 +123,19 @@ CREATE TABLE Tags (
     tag_subject_id INTEGER NOT NULL,
     tag_created_time TIMESTAMP NOT NULL,
     tag_x NUMBER NOT NULL,
-    tag_y NUMBER REQUIRED
+    tag_y NUMBER REQUIRED,
+    PRIMARY KEY (tag_photo_id)
 );
+
+CREATE TRIGGER Order_Friend_Pairs
+    BEFORE INSERT ON Friends
+    FOR EACH ROW
+        DECLARE temp INTEGER;
+        BEGIN
+            IF :NEW.user1_id > :NEW.user2_id THEN
+                temp := :NEW.user2_id;
+                :NEW.user2_id := :NEW.user1_id;
+                :NEW.user1_id := temp;
+            END IF;
+        END;
+/
