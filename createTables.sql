@@ -89,13 +89,11 @@ CREATE TABLE Participants(
     user_id INTEGER NOT NULL,
     confirmation VARCHAR2(100) NOT NULL,
     CHECK (confirmation in ('Attending','Unsure','Decline', 'Not_Replied')),
-    PRIMARY KEY (event_id),
+    
+    -- No user can participate more than once:
+    PRIMARY KEY (event_id, user_id),
+    
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
-    -- TODO: confirmation must be either 
-        -- Attending
-        -- Unsure
-        -- Declines
-        -- Not_Replied
 );
 
 CREATE TABLE Albums(
@@ -106,7 +104,11 @@ CREATE TABLE Albums(
     album_modified_time TIMESTAMP,
     album_link VARCHAR(2000) NOT NULL,
     album_visibility VARCHAR(100) NOT NULL,
-    cover_photo_id INTEGER NOT NULL
+    cover_photo_id INTEGER NOT NULL,
+    FOREIGN KEY album_owner_id REFERENCES Users (user_id)
+    FOREIGN KEY cover_photo_id REFERENCES Photos (photo_id)
+    PRIMARY KEY (album_id)
+    CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself')),
 );
 
 CREATE TABLE Photos (
@@ -116,6 +118,7 @@ CREATE TABLE Photos (
     photo_created_time TIMESTAMP NOT NULL,
     photo_modified_time TIMESTAMP,
     photo_link VARCHAR2(2000) NOT NULL
+    PRIMARY KEY (photo_id)
 );
 
 CREATE TABLE Tags (
