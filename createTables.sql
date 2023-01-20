@@ -1,4 +1,3 @@
--- done
 CREATE TABLE Users(
     user_id INTEGER NOT NULL,
     first_name VARCHAR2(100) NOT NULL,
@@ -146,6 +145,10 @@ CREATE TABLE Tags (
     tag_y NUMBER REQUIRED,
     PRIMARY KEY (tag_photo_id)
 );
+
+CREATE SEQUENCE Friend_Sequence
+    START WITH 1
+    INCREMENT BY 1;
 
 CREATE TRIGGER Order_Friend_Pairs
     BEFORE INSERT ON Friends
