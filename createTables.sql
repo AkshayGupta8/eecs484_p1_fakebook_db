@@ -1,4 +1,4 @@
-CREATE TABLE Users(
+CREATE TABLE Users (
     user_id INTEGER NOT NULL,
     first_name VARCHAR2(100) NOT NULL,
     last_name VARCHAR2(100) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE Users(
 );
 
 -- done
-CREATE TABLE Friends(
+CREATE TABLE Friends (
     user1_id INTEGER NOT NULL,
     user2_id INTEGER NOT NULL,
     FOREIGN KEY (user1_id) REFERENCES Users (user_id)
@@ -21,7 +21,7 @@ CREATE TABLE Friends(
 );
 
 -- done
-CREATE TABLE Cities(
+CREATE TABLE Cities (
     city_id INTEGER NOT NULL,
     city_name VARCHAR2(100) NOT NULL,
     state_name VARCHAR2(100) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE Cities(
 );
 
 -- done
-CREATE TABLE User_Current_Cities(
+CREATE TABLE User_Current_Cities (
     user_id INTEGER NOT NULL,
     current_city_id INTEGER NOT NULL,
     PRIMARY KEY (user_id),
@@ -39,7 +39,7 @@ CREATE TABLE User_Current_Cities(
 );
 
 -- done
-CREATE TABLE User_Hometown_Cities(
+CREATE TABLE User_Hometown_Cities (
     user_id INTEGER NOT NULL,
     hometown_city_id INTEGER NOT NULL,
     PRIMARY KEY (user_id),
@@ -48,7 +48,7 @@ CREATE TABLE User_Hometown_Cities(
 );
 
 -- done
-CREATE TABLE Messages(
+CREATE TABLE Messages (
     message_id INTEGER NOT NULL,
     sender_id INTEGER NOT NULL,
     receiver_id INTEGER NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Messages(
 );
 
 -- done
-CREATE TABLE Programs(
+CREATE TABLE Programs (
     program_id INTEGER NOT NULL,
     institution VARCHAR2(100) NOT NULL,
     concentration VARCHAR2(100) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE Programs(
 );
 
 -- done
-CREATE TABLE Education(
+CREATE TABLE Education (
     user_id INTEGER NOT NULL,
     program_id INTEGER NOT NULL,
     program_year INTEGER NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE Education(
 );
 
 -- TODO
-CREATE TABLE User_Events(
+CREATE TABLE User_Events (
     event_id INTEGER NOT NULL,
     event_creator_id INTEGER NOT NULL,
     event_name VARCHAR2(100) NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE User_Events(
 );
 
 -- TODO
-CREATE TABLE Participants(
+CREATE TABLE Participants (
     event_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     confirmation VARCHAR2(100) NOT NULL,
@@ -110,7 +110,7 @@ CREATE TABLE Participants(
 );
 
 -- TODO
-CREATE TABLE Albums(
+CREATE TABLE Albums (
     album_id INTEGER NOT NULL,
     album_owner_id INTEGER NOT NULL,
     album_name VARCHAR2(100) NOT NULL,
