@@ -116,8 +116,8 @@ CREATE TABLE Albums(
     album_visibility VARCHAR(100) NOT NULL,
     cover_photo_id INTEGER NOT NULL,
     PRIMARY KEY (album_id),
-    FOREIGN KEY album_owner_id REFERENCES Users (user_id),
-    FOREIGN KEY cover_photo_id REFERENCES Photos (photo_id),
+    FOREIGN KEY album_owner_id REFERENCES Users(user_id),
+    FOREIGN KEY cover_photo_id REFERENCES Photos(photo_id),
     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself'))
 );
 
@@ -127,7 +127,7 @@ CREATE TABLE Tags (
     tag_subject_id INTEGER NOT NULL,
     tag_created_time TIMESTAMP NOT NULL,
     tag_x NUMBER NOT NULL,
-    tag_y NUMBER REQUIRED,
+    tag_y NUMBER NOT NULL,
     PRIMARY KEY (tag_photo_id)
 );
 
