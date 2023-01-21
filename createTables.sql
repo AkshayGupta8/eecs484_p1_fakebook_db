@@ -76,7 +76,7 @@ CREATE TABLE Education(
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
--- TODO
+-- done (probably)
 CREATE TABLE User_Events(
     event_id INTEGER NOT NULL,
     event_creator_id INTEGER NOT NULL,
