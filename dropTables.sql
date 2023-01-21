@@ -9,7 +9,7 @@ DROP SEQUENCE Friend_Sequence;
 DROP TABLE Education;
 DROP TABLE Programs;
 
-DROP TABLE Albums;
+DROP TABLE Albums CASCADE CONSTRAINTS;
 DROP TABLE Tags;
 DROP TABLE Photos;
 
