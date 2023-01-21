@@ -1,4 +1,4 @@
-CREATE TABLE Users12312 (
+CREATE TABLE Users (
     user_id INTEGER NOT NULL,
     first_name VARCHAR2(100) NOT NULL,
     last_name VARCHAR2(100) NOT NULL,
@@ -9,16 +9,16 @@ CREATE TABLE Users12312 (
     PRIMARY KEY (user_id)
 );
 
--- -- done
--- CREATE TABLE Friends(
---     user1_id INTEGER NOT NULL,
---     user2_id INTEGER NOT NULL,
---     FOREIGN KEY (user1_id) REFERENCES Users (user_id)
---     FOREIGN KEY (user2_id) REFERENCES Users (user_id)
+-- done
+CREATE TABLE Friends(
+    user1_id INTEGER NOT NULL,
+    user2_id INTEGER NOT NULL,
+    FOREIGN KEY (user1_id) REFERENCES Users (user_id)
+    FOREIGN KEY (user2_id) REFERENCES Users (user_id)
     
---     -- friends trigger constraint
---     PRIMARY KEY (user1_id, user2_id)
--- );
+    -- friends trigger constraint
+    PRIMARY KEY (user1_id, user2_id)
+);
 
 -- -- done
 -- CREATE TABLE Cities(
@@ -108,22 +108,6 @@ CREATE TABLE Users12312 (
 -- --     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 -- -- );
 
--- -- -- TODO
--- -- CREATE TABLE Albums(
--- --     album_id INTEGER NOT NULL,
--- --     album_owner_id INTEGER NOT NULL,
--- --     album_name VARCHAR2(100) NOT NULL,
--- --     album_created_time TIMESTAMP NOT NULL,
--- --     album_modified_time TIMESTAMP,
--- --     album_link VARCHAR(2000) NOT NULL,
--- --     album_visibility VARCHAR(100) NOT NULL,
--- --     cover_photo_id INTEGER NOT NULL,
--- --     FOREIGN KEY album_owner_id REFERENCES Users (user_id)
--- --     FOREIGN KEY cover_photo_id REFERENCES Photos (photo_id)
--- --     PRIMARY KEY (album_id)
--- --     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself')),
--- -- );
-
 -- -- TODO
 -- CREATE TABLE Albums(
 --     album_id INTEGER NOT NULL,
@@ -137,7 +121,7 @@ CREATE TABLE Users12312 (
 --     FOREIGN KEY album_owner_id REFERENCES Users (user_id)
 --     FOREIGN KEY cover_photo_id REFERENCES Photos (photo_id)
 --     PRIMARY KEY (album_id)
---     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself')),
+--     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself'))
 -- );
 
 -- -- TODO
@@ -150,19 +134,19 @@ CREATE TABLE Users12312 (
 --     PRIMARY KEY (tag_photo_id)
 -- );
 
--- CREATE SEQUENCE Friend_Sequence
---     START WITH 1
---     INCREMENT BY 1;
+CREATE SEQUENCE Friend_Sequence
+    START WITH 1
+    INCREMENT BY 1;
 
--- CREATE TRIGGER Order_Friend_Pairs
---     BEFORE INSERT ON Friends
---     FOR EACH ROW
---         DECLARE temp INTEGER;
---         BEGIN
---             IF :NEW.user1_id > :NEW.user2_id THEN
---                 temp := :NEW.user2_id;
---                 :NEW.user2_id := :NEW.user1_id;
---                 :NEW.user1_id := temp;
---             END IF;
---         END;
--- /
+CREATE TRIGGER Order_Friend_Pairs
+    BEFORE INSERT ON Friends
+    FOR EACH ROW
+        DECLARE temp INTEGER;
+        BEGIN
+            IF :NEW.user1_id > :NEW.user2_id THEN
+                temp := :NEW.user2_id;
+                :NEW.user2_id := :NEW.user1_id;
+                :NEW.user1_id := temp;
+            END IF;
+        END;
+/
