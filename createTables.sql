@@ -127,7 +127,7 @@ CREATE TABLE Photos(
     photo_created_time TIMESTAMP NOT NULL,
     photo_modified_time TIMESTAMP,
     photo_link VARCHAR2(2000) NOT NULL
-    PRIMARY KEY (photo_id),
+    PRIMARY KEY (photo_id)
 );
 
 ALTER TABLE Albums ADD CONSTRAINT cover_photo_constraint
