@@ -17,7 +17,7 @@ CREATE TABLE Friends(
     FOREIGN KEY (user1_id) REFERENCES Users (user_id),
     FOREIGN KEY (user2_id) REFERENCES Users (user_id)
 );
-
+l
 -- done
 CREATE TABLE Cities(
     city_id INTEGER NOT NULL,
@@ -129,8 +129,13 @@ CREATE TABLE Photos(
     photo_modified_time TIMESTAMP,
     photo_link VARCHAR2(2000) NOT NULL
     PRIMARY KEY (photo_id),
-    FOREIGN KEY (album_id) REFERENCES Albums(album_id)
 );
+
+ALTER TABLE Albums ADD CONSTRAINT cover_photo_constraint
+    FOREIGN KEY (cover_photo_id) REFERENCES Photos(photo_id) INITIALLY DEFERRED DEFERRABLE;
+
+ALTER TABLE Photos ADD CONSTRAINT photo_album_constraint
+    FOREIGN KEY (album_id) REFERENCES Albums(album_id) INITIALLY DEFERRED DEFERRABLE;
 
 -- TODO
 CREATE TABLE Tags (
