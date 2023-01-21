@@ -112,13 +112,24 @@ CREATE TABLE Albums(
     album_name VARCHAR2(100) NOT NULL,
     album_created_time TIMESTAMP NOT NULL,
     album_modified_time TIMESTAMP,
-    album_link VARCHAR(2000) NOT NULL,
-    album_visibility VARCHAR(100) NOT NULL,
+    album_link VARCHAR2(2000) NOT NULL,
+    album_visibility VARCHAR2(100) NOT NULL,
     cover_photo_id INTEGER NOT NULL,
     PRIMARY KEY (album_id),
     FOREIGN KEY (album_owner_id) REFERENCES Users(user_id),
     FOREIGN KEY (cover_photo_id) REFERENCES Photos(photo_id),
     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself'))
+);
+
+CREATE TABLE Photos(
+    photo_id INTEGER NOT NULL,
+    album_id INTEGER NOT NULL,
+    photo_caption VARCHAR2(2000),
+    photo_created_time TIMESTAMP NOT NULL,
+    photo_modified_time TIMESTAMP,
+    photo_link VARCHAR2(2000) NOT NULL
+    PRIMARY KEY (photo_id),
+    FOREIGN KEY (album_id) REFERENCES Albums(album_id)
 );
 
 -- TODO
