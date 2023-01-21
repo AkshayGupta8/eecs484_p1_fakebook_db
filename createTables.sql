@@ -17,7 +17,7 @@ CREATE TABLE Friends(
     FOREIGN KEY (user1_id) REFERENCES Users (user_id),
     FOREIGN KEY (user2_id) REFERENCES Users (user_id)
 );
-l
+
 -- done
 CREATE TABLE Cities(
     city_id INTEGER NOT NULL,
