@@ -6,6 +6,7 @@ DROP TABLE
 DROP TABLE Cities;
 DROP TABLE Messages;
 DROP TABLE Friends;
+DROP SEQUENCE Friend_Sequence;
 DROP TABLE Education;
 DROP TABLE Programs;
 
