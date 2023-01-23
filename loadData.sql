@@ -126,8 +126,12 @@ No public data for participants. */
     FOREIGN KEY (album_owner_id) REFERENCES Users(user_id),
     CHECK (album_visibility in ('Everyone','Friends','Friends_Of_Friends', 'Myself'))
 );
-
 */
+INSERT INTO Albums(album_id, album_owner_id, album_name, album_created_time, 
+    album_modified_time, album_link, album_visibility, cover_photo_id)
+SELECT DISTINCT album_id, owner_id, album_name, album_created_time, album_modified_time,
+    album_link, album_visibility, cover_photo_id
+FROM project1.Public_Photo_Information;
 
 /* CREATE TABLE Photos(
     photo_id INTEGER NOT NULL,
