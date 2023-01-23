@@ -24,6 +24,7 @@ CREATE TABLE Cities(
     city_name VARCHAR2(100) NOT NULL,
     state_name VARCHAR2(100) NOT NULL,
     country_name VARCHAR2(100) NOT NULL,
+    UNIQUE (city_name, state_name, country_name),
     PRIMARY KEY (city_id)
 );
 
@@ -145,6 +146,18 @@ CREATE TABLE Tags (
     tag_y NUMBER NOT NULL,
     PRIMARY KEY (tag_photo_id)
 );
+
+CREATE SEQUENCE City_Sequence
+    START WITH 1
+    INCREMENT BY 1;
+
+CREATE TRIGGER City_Trigger
+    BEFORE INSERT ON Cities
+    FOR EACH ROW
+        BEGIN
+            SELECT City_sequence.NEXTVAL INTO :NEW.city_id FROM DUAL;
+        END;
+/
 
 CREATE SEQUENCE Friend_Sequence
     START WITH 1

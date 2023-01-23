@@ -15,3 +15,5 @@ DROP TABLE Photos;
 
 DROP TABLE Participants;
 DROP TABLE Users;
+
+DROP SEQUENCE City_Sequence;

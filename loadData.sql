@@ -26,18 +26,35 @@ INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.
     -- country_name VARCHAR2(100) NOT NULL,
     -- PRIMARY KEY (city_id)
 -- TODO: Couldn't figure out what to do with the city_id field
--- INSERT INTO Cities(city_id, city_name, state_name, country_name) 
--- SELECT DISTINCT event_city, event_state, event_country FROM project1.Public_Event_Information
+-- Probably should also add from the users table
+INSERT INTO Cities(city_name, state_name, country_name)
+SELECT DISTINCT event_city, event_state, event_country FROM project1.Public_Event_Information
+UNION 
+SELECT DISTINCT current_city, current_state, current_country FROM project1.Public_User_Information
+UNION
+SELECT DISTINCT hometown_city, hometown_state, hometown_country FROM project1.Public_User_Information;
 
 -- User_Current_Cities
     -- user_id INTEGER NOT NULL,
     -- current_city_id INTEGER NOT NULL,
--- TODO: Not sure how to do this yet, need to figure out inner join as well as city_id for cities
+-- TODO: Not sure how to do this yet, need to figure out intersect as well as city_id for cities
+INSERT INTO User_Current_Cities(user_id, current_city_id)
+SELECT DISTINCT user_id, current_city, current_state, current_country FROM project1.Public_User_Information;
+
+
+-- SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+-- FROM Orders
+-- INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+
+-- City
+-- project1.Public_User_Information
+-- Join on current_city, current_state, current_country
 
 -- User_Hometown_Cities
     -- user_id INTEGER NOT NULL,
     -- hometown_city_id INTEGER NOT NULL,
--- TODO: Not sure how to do this yet, need to figure out inner join as well as city_id for cities
+-- TODO: Not sure how to do this yet, need to figure out intersect as well as city_id for cities
 
 -- Messages
     -- message_id INTEGER NOT NULL,
@@ -57,3 +74,10 @@ INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.
 -- INSERT INTO Programs(program_id, institution, concentration, degree)
 -- SELECT DISTINCT ____, institution_name, program_concentration, program_degree FROM project1.Public_User_Information
 
+-- Education
+    -- user_id INTEGER NOT NULL,
+    -- program_id INTEGER NOT NULL,
+    -- program_year INTEGER NOT NULL,
+-- TODO: Figure out how iintersect works
+-- INSERT INTO Education(user_id, institution, program_year)
+-- SELECT DISTINCT 
