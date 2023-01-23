@@ -19,12 +19,12 @@ SELECT
     p.concentration,
     p.degree
 FROM Users u
-FULL OUTER JOIN User_Current_Cities cur on u.user_id=cur.user_id
-FULL OUTER JOIN Cities c1 on current_city_id=c1.city_id
-FULL OUTER JOIN User_Hometown_Cities hom on u.user_id=hom.user_id
-FULL OUTER JOIN Cities c2 on c2.city_id=hometown_city_id
-FULL OUTER JOIN Education e on u.user_id = e.user_id
-FULL OUTER JOIN Programs p on p.program_id=e.program_id;
+LEFT JOIN User_Current_Cities cur on u.user_id=cur.user_id
+LEFT JOIN Cities c1 on current_city_id=c1.city_id
+LEFT JOIN User_Hometown_Cities hom on u.user_id=hom.user_id
+LEFT JOIN Cities c2 on c2.city_id=hometown_city_id
+LEFT JOIN Education e on u.user_id = e.user_id
+LEFT JOIN Programs p on p.program_id=e.program_id;
 
 -- View_Are_Friends
 CREATE VIEW View_Are_Friends AS

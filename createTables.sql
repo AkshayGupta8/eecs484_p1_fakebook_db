@@ -14,8 +14,8 @@ CREATE TABLE Friends(
     user1_id INTEGER NOT NULL,
     user2_id INTEGER NOT NULL,
     PRIMARY KEY (user1_id, user2_id),
-    FOREIGN KEY (user1_id) REFERENCES Users (user_id),
-    FOREIGN KEY (user2_id) REFERENCES Users (user_id)
+    FOREIGN KEY (user1_id) REFERENCES Users(user_id),
+    FOREIGN KEY (user2_id) REFERENCES Users(user_id)
 );
 
 -- done
@@ -73,7 +73,7 @@ CREATE TABLE Education(
     user_id INTEGER NOT NULL,
     program_id INTEGER NOT NULL,
     program_year INTEGER NOT NULL,
-    PRIMARY KEY (user_id, program_id),
+    PRIMARY KEY (user_id, program_id, program_year),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
@@ -91,6 +91,7 @@ CREATE TABLE User_Events(
     event_city_id INTEGER NOT NULL,
     event_start_time TIMESTAMP,
     event_end_time TIMESTAMP,
+    -- UNIQUE (event_id, ),
     PRIMARY KEY (event_id),
     FOREIGN KEY (event_creator_id) REFERENCES Users(user_id)
 );
@@ -103,7 +104,8 @@ CREATE TABLE Participants(
     CHECK (confirmation in ('Attending','Unsure','Decline', 'Not_Replied')),
     -- No user can participate more than once:
     PRIMARY KEY (event_id, user_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (event_id) REFERENCES User_Events(event_id)
 );
 
 -- TODO
@@ -143,8 +145,8 @@ CREATE TABLE Tags (
     tag_subject_id INTEGER NOT NULL,
     tag_created_time TIMESTAMP NOT NULL,
     tag_x NUMBER NOT NULL,
-    tag_y NUMBER NOT NULL
-    -- PRIMARY KEY (tag_photo_id)
+    tag_y NUMBER NOT NULL,
+    PRIMARY KEY (tag_photo_id, tag_subject_id)
 );
 
 CREATE SEQUENCE Programs_Sequence
