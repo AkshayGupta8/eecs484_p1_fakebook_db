@@ -1,6 +1,30 @@
--- Akshay createViews
--- CREATE VIEW View_User_Information AS 
--- SELECT user_id, first_name, last_name, year_of_birth, month_of_birth, day_of_birth, gender FROM Users
+-- View_User_Information
+CREATE VIEW View_User_Information AS
+SELECT
+    u.user_id,
+    u.first_name,
+    u.last_name,
+    u.year_of_birth,
+    u.month_of_birth,
+    u.day_of_birth,
+    u.gender,
+    c1.city_name AS current_city,
+    c1.state_name AS current_state, 
+    c1.country_name AS current_country,
+    c2.city_name AS hometown_city,
+    c2.state_name AS hometown_state,
+    c2.country_name AS hometown_country,
+    p.institution,
+    e.program_year,
+    p.concentration,
+    p.degree
+FROM Users u
+FULL OUTER JOIN User_Current_Cities cur on u.user_id=cur.user_id
+FULL OUTER JOIN Cities c1 on current_city_id=c1.city_id
+FULL OUTER JOIN User_Hometown_Cities hom on u.user_id=hom.user_id
+FULL OUTER JOIN Cities c2 on c2.city_id=hometown_city_id
+FULL OUTER JOIN Education e on u.user_id = e.user_id
+FULL OUTER JOIN Programs p on p.program_id=e.program_id;
 
 -- View_Are_Friends
 CREATE VIEW View_Are_Friends AS
@@ -38,18 +62,13 @@ CREATE VIEW View_Tag_Information AS
 SELECT tag_photo_id, tag_subject_id, tag_created_time, tag_x, tag_y
 FROM Tags;
 
--- CREATE VIEW view_name AS
--- SELECT column1, column2, ...
--- FROM table_name
--- WHERE condition;
-
-
 
 /* 
 Test Queries for Views -> ALL Should return 
     'no rows selected'
 
 View_User_Information
+SELECT * FROM project1.Public_User_Information MINUS SELECT * FROM View_User_Information;
 
 View_Are_Friends
 1. SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM project1.Public_Are_Friends MINUS SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM View_Are_Friends;
