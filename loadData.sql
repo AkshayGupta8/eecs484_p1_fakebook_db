@@ -12,24 +12,9 @@ SELECT DISTINCT user_id, first_name, last_name, year_of_birth, month_of_birth, d
 
 
 -- Friends Table
-
-
-
--- SELECT * FROM project1.Public_User_Information WHERE ROWNUM < 2;
-
-
--- INSERT INTO Users(user_id, first_name, last_name, year_of_birth, month_of_birth, day_of_birth, gender) Values (1, 'a', 'b', 2000, 1, 1, 'm');
-
-
-
-
--- The following examples show various forms of INSERT statement:
-
--- INSERT INTO bonus SELECT ename, job, sal, comm FROM emp
---    WHERE comm > sal * 0.25;
--- ...
--- INSERT INTO emp (empno, ename, job, sal, comm, deptno)
---    VALUES (4160, 'STURDEVIN', 'SECURITY GUARD', 2045, NULL, 30);
--- ...
--- INSERT INTO dept
---    VALUES (my_deptno, UPPER(my_dname), 'CHICAGO');
+    -- user1_id INTEGER NOT NULL,
+    -- user2_id INTEGER NOT NULL,
+    -- PRIMARY KEY (user1_id, user2_id),
+    -- FOREIGN KEY (user1_id) REFERENCES Users (user_id),
+    -- FOREIGN KEY (user2_id) REFERENCES Users (user_id)
+INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.Public_Are_Friends;
