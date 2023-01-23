@@ -147,6 +147,18 @@ CREATE TABLE Tags (
     PRIMARY KEY (tag_photo_id)
 );
 
+CREATE SEQUENCE Programs_Sequence
+    START WITH 1
+    INCREMENT BY 1;
+
+CREATE TRIGGER Programs_Trigger
+    BEFORE INSERT ON Programs
+    FOR EACH ROW
+        BEGIN
+            SELECT Programs_Sequence.NEXTVAL INTO :NEW.program_id FROM DUAL;
+        END;
+/
+
 CREATE SEQUENCE City_Sequence
     START WITH 1
     INCREMENT BY 1;

@@ -17,3 +17,4 @@ DROP TABLE Participants;
 DROP TABLE Users;
 
 DROP SEQUENCE City_Sequence;
+DROP SEQUENCE Programs_Sequence;
