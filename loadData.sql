@@ -146,3 +146,16 @@ FROM project1.Public_Photo_Information;
 INSERT INTO Photos(photo_id, album_id, photo_caption, photo_created_time, photo_modified_time, photo_link)
 SELECT DISTINCT photo_id, album_id, photo_caption, photo_created_time, photo_modified_time, photo_link
 FROM project1.Public_Photo_Information;
+
+/* CREATE TABLE Tags (
+    tag_photo_id INTEGER NOT NULL,
+    tag_subject_id INTEGER NOT NULL,
+    tag_created_time TIMESTAMP NOT NULL,
+    tag_x NUMBER NOT NULL,
+    tag_y NUMBER NOT NULL,
+    PRIMARY KEY (tag_photo_id)
+);
+*/
+INSERT INTO Tags(tag_photo_id, tag_subject_id, tag_created_time, tag_x, tag_y)
+SELECT DISTINCT photo_id, tag_subject_id, tag_created_time, tag_x_coordinate, tag_y_coordinate
+FROM project1.Public_Tag_Information;

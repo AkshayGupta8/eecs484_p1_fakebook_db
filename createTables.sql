@@ -143,8 +143,8 @@ CREATE TABLE Tags (
     tag_subject_id INTEGER NOT NULL,
     tag_created_time TIMESTAMP NOT NULL,
     tag_x NUMBER NOT NULL,
-    tag_y NUMBER NOT NULL,
-    PRIMARY KEY (tag_photo_id)
+    tag_y NUMBER NOT NULL
+    -- PRIMARY KEY (tag_photo_id)
 );
 
 CREATE SEQUENCE Programs_Sequence
