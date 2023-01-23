@@ -2,6 +2,22 @@
 -- CREATE VIEW View_User_Information AS 
 -- SELECT user_id, first_name, last_name, year_of_birth, month_of_birth, day_of_birth, gender FROM Users
 
+
+CREATE VIEW View_Event_Information AS
+SELECT event_id, event_creator_id, event_name, event_tagline, event_description, event_host,
+event_type, event_subtype, event_address, city_name, state_name, country_name, event_start_time, event_end_time
+FROM User_Events u
+INNER JOIN Cities c
+ON u.event_city_id = c.city_id
+WHERE event_host IS NOT NULL
+AND event_type IS NOT NULL
+AND event_subtype IS NOT NULL
+AND event_address IS NOT NULL
+AND event_start_time IS NOT NULL
+AND event_end_time IS NOT NULL;
+
+
+
 CREATE VIEW View_Tag_Information AS
 SELECT tag_photo_id, tag_subject_id, tag_created_time, tag_x, tag_y
 FROM Tags;
@@ -18,9 +34,16 @@ Test Queries for Views -> ALL Should return
     'no rows selected'
 
 View_User_Information
+
 View_Are_Friends
+1. SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM project1.Public_Are_Friends MINUS SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM View_Are_Friends;
+2. SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM View_Are_Friends MINUS SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM project1.Public_Are_Friends;
+
 View_Photo_Information
+
+
 View_Event_Information
+SELECT * FROM project1.Public_Event_Information MINUS SELECT * FROM View_Event_Information;
 
 View_Tag_Information:
 SELECT * FROM project1.Public_Tag_Information MINUS SELECT * FROM View_Tag_Information;
