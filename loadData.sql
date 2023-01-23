@@ -34,3 +34,8 @@ INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.
     -- current_city_id INTEGER NOT NULL,
 -- TODO: Not sure how to do this yet, need to figure out inner join as well as city_id for cities
 
+-- User_Hometown_Cities
+    -- user_id INTEGER NOT NULL,
+    -- hometown_city_id INTEGER NOT NULL,
+-- TODO: Not sure how to do this yet, need to figure out inner join as well as city_id for cities
+
