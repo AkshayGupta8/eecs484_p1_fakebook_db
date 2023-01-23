@@ -2,6 +2,11 @@
 -- CREATE VIEW View_User_Information AS 
 -- SELECT user_id, first_name, last_name, year_of_birth, month_of_birth, day_of_birth, gender FROM Users
 
+-- View_Are_Friends
+CREATE VIEW View_Are_Friends AS
+SELECT user1_id, user2_id
+FROM Friends;
+
 -- View_Photo_Information
 CREATE VIEW View_Photo_Information AS
 SELECT p.album_id, a.album_owner_id, a.cover_photo_id, a.album_name,
@@ -12,8 +17,6 @@ FROM Albums a
 JOIN Photos p ON a.album_id = p.album_id
 WHERE a.album_modified_time IS NOT NULL
 AND p.photo_modified_time IS NOT NULL;
-
--- ERROR: 1942 Rows are Missing in the View
 
 -- Event View
 CREATE VIEW View_Event_Information AS
