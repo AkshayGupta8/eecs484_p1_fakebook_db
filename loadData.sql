@@ -19,7 +19,7 @@ SELECT DISTINCT user_id, first_name, last_name, year_of_birth, month_of_birth, d
     -- FOREIGN KEY (user2_id) REFERENCES Users (user_id)
 INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.Public_Are_Friends;
 
--- Cities
+-- Cities 
     -- city_id INTEGER NOT NULL,
     -- city_name VARCHAR2(100) NOT NULL,
     -- state_name VARCHAR2(100) NOT NULL,
