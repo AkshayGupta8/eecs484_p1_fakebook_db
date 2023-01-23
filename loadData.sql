@@ -143,3 +143,6 @@ FROM project1.Public_Photo_Information;
     PRIMARY KEY (photo_id)
 );
 */
+INSERT INTO Photos(photo_id, album_id, photo_caption, photo_created_time, photo_modified_time, photo_link)
+SELECT DISTINCT photo_id, album_id, photo_caption, photo_created_time, photo_modified_time, photo_link
+FROM project1.Public_Photo_Information;
