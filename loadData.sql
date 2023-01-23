@@ -47,3 +47,13 @@ INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.
     -- sent_time TIMESTAMP NOT NULL,
 -- TODO: There are no messages to insert
 -- INSERT INTO Messages(message_id, sender_id, receiver_id, message_content)
+
+-- Programs
+    -- program_id INTEGER NOT NULL,
+    -- institution VARCHAR2(100) NOT NULL,
+    -- concentration VARCHAR2(100) NOT NULL,
+    -- degree VARCHAR2(100) NOT NULL,
+-- TODO: figure out program_id
+-- INSERT INTO Programs(program_id, institution, concentration, degree)
+-- SELECT DISTINCT ____, institution_name, program_concentration, program_degree FROM project1.Public_User_Information
+
