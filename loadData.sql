@@ -1,12 +1,12 @@
--- Users Table
-    -- user_id INTEGER NOT NULL,
-    -- first_name VARCHAR2(100) NOT NULL,
-    -- last_name VARCHAR2(100) NOT NULL,
-    -- year_of_birth INTEGER,
-    -- month_of_birth INTEGER,
-    -- day_of_birth INTEGER,
-    -- gender VARCHAR2(100),
-    -- PRIMARY KEY (user_id)
+/* Users Table
+    user_id INTEGER NOT NULL,
+    first_name VARCHAR2(100) NOT NULL,
+    last_name VARCHAR2(100) NOT NULL,
+    year_of_birth INTEGER,
+    month_of_birth INTEGER,
+    day_of_birth INTEGER,
+    gender VARCHAR2(100),
+    PRIMARY KEY (user_id) */
 INSERT INTO Users(user_id, first_name, last_name, year_of_birth, month_of_birth, day_of_birth, gender)
 SELECT DISTINCT user_id, first_name, last_name, year_of_birth, month_of_birth, day_of_birth, gender FROM project1.Public_User_Information;
 
@@ -50,7 +50,7 @@ ON p.current_city = c.city_name AND p.current_state = c.state_name AND p.current
 -- User_Hometown_Cities
     -- user_id INTEGER NOT NULL,
     -- hometown_city_id INTEGER NOT NULL,
-INSERT INTO User_Hometown_Cities(user_id, current_city_id)
+INSERT INTO User_Hometown_Cities(user_id, hometown_city_id)
 SELECT DISTINCT user_id, city_id
 FROM project1.Public_User_Information p
 INNER JOIN Cities c
