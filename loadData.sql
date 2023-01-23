@@ -37,15 +37,11 @@ SELECT DISTINCT hometown_city, hometown_state, hometown_country FROM project1.Pu
 -- User_Current_Cities
     -- user_id INTEGER NOT NULL,
     -- current_city_id INTEGER NOT NULL,
--- TODO: Not sure how to do this yet, need to figure out intersect as well as city_id for cities
 INSERT INTO User_Current_Cities(user_id, current_city_id)
-SELECT DISTINCT user_id, current_city, current_state, current_country FROM project1.Public_User_Information;
-
-
--- SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
--- FROM Orders
--- INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
-
+SELECT DISTINCT user_id, city_id
+FROM project1.Public_User_Information p
+INNER JOIN Cities c
+ON p.current_city = c.city_name AND p.current_state = c.state_name AND p.current_country = c.country_name;
 
 -- City
 -- project1.Public_User_Information
@@ -54,7 +50,11 @@ SELECT DISTINCT user_id, current_city, current_state, current_country FROM proje
 -- User_Hometown_Cities
     -- user_id INTEGER NOT NULL,
     -- hometown_city_id INTEGER NOT NULL,
--- TODO: Not sure how to do this yet, need to figure out intersect as well as city_id for cities
+INSERT INTO User_Hometown_Cities(user_id, current_city_id)
+SELECT DISTINCT user_id, city_id
+FROM project1.Public_User_Information p
+INNER JOIN Cities c
+ON p.hometown_city = c.city_name AND p.hometown_state = c.state_name AND p.hometown_country = c.country_name;
 
 -- Messages
     -- message_id INTEGER NOT NULL,
