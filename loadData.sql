@@ -39,3 +39,11 @@ INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.
     -- hometown_city_id INTEGER NOT NULL,
 -- TODO: Not sure how to do this yet, need to figure out inner join as well as city_id for cities
 
+-- Messages
+    -- message_id INTEGER NOT NULL,
+    -- sender_id INTEGER NOT NULL,
+    -- receiver_id INTEGER NOT NULL,
+    -- message_content VARCHAR2(2000) NOT NULL,
+    -- sent_time TIMESTAMP NOT NULL,
+-- TODO: There are no messages to insert
+-- INSERT INTO Messages(message_id, sender_id, receiver_id, message_content)
