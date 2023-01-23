@@ -18,3 +18,13 @@ SELECT DISTINCT user_id, first_name, last_name, year_of_birth, month_of_birth, d
     -- FOREIGN KEY (user1_id) REFERENCES Users (user_id),
     -- FOREIGN KEY (user2_id) REFERENCES Users (user_id)
 INSERT INTO Friends(user1_id, user2_id) SELECT user1_id, user2_id FROM project1.Public_Are_Friends;
+
+-- Cities
+    -- city_id INTEGER NOT NULL,
+    -- city_name VARCHAR2(100) NOT NULL,
+    -- state_name VARCHAR2(100) NOT NULL,
+    -- country_name VARCHAR2(100) NOT NULL,
+    -- PRIMARY KEY (city_id)
+-- TODO: Couldn't figure out what to do with the city_id field
+-- INSERT INTO Cities(city_id, city_name, state_name, country_name) 
+-- SELECT DISTINCT event_city, event_state, event_country FROM project1.Public_Event_Information
