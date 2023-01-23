@@ -102,7 +102,9 @@ INSERT INTO User_Events
 SELECT DISTINCT event_id, event_creator_id, event_name, event_tagline, event_description, event_host, event_type, event_subtype, event_address, city_id, event_start_time, event_end_time
 FROM project1.Public_Event_Information p
 INNER JOIN Cities c
-ON p.event_city = c.city_name AND p.event_state = c.state_name AND p.event_country = c.country_name
+ON p.event_city = c.city_name 
+AND p.event_state = c.state_name 
+AND p.event_country = c.country_name
 WHERE event_id IS NOT NULL
 AND event_creator_id IS NOT NULL
 AND event_name IS NOT NULL
