@@ -61,26 +61,3 @@ AND event_end_time IS NOT NULL;
 CREATE VIEW View_Tag_Information AS
 SELECT tag_photo_id, tag_subject_id, tag_created_time, tag_x, tag_y
 FROM Tags;
-
-
-/* 
-Test Queries for Views -> ALL Should return 
-    'no rows selected'
-
-View_User_Information
-SELECT * FROM project1.Public_User_Information MINUS SELECT * FROM View_User_Information;
-
-View_Are_Friends
-1. SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM project1.Public_Are_Friends MINUS SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM View_Are_Friends;
-2. SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM View_Are_Friends MINUS SELECT LEAST(user1_id, user2_id),  GREATEST(user1_id, user2_id) FROM project1.Public_Are_Friends;
-
-View_Photo_Information
-SELECT * FROM project1.Public_Photo_Information MINUS SELECT * FROM View_Photo_Information;
-
-View_Event_Information
-SELECT * FROM project1.Public_Event_Information MINUS SELECT * FROM View_Event_Information;
-
-View_Tag_Information:
-SELECT * FROM project1.Public_Tag_Information MINUS SELECT * FROM View_Tag_Information;
-
-*/
