@@ -103,7 +103,7 @@ CREATE TABLE Participants(
     event_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     confirmation VARCHAR2(100) NOT NULL,
-    CHECK (confirmation in ('Attending','Unsure','Decline', 'Not_Replied')),
+    CHECK (confirmation in ('Attending','Unsure','Declines', 'Not_Replied')),
     -- No user can participate more than once:
     PRIMARY KEY (event_id, user_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
