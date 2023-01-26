@@ -74,7 +74,8 @@ CREATE TABLE Education(
     program_id INTEGER NOT NULL,
     program_year INTEGER NOT NULL,
     PRIMARY KEY (user_id, program_id, program_year),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (program_id) REFERENCES Programs(program_id)
 );
 
 -- done (probably)
