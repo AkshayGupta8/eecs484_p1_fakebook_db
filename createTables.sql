@@ -94,7 +94,8 @@ CREATE TABLE User_Events(
     event_end_time TIMESTAMP,
     -- UNIQUE (event_id, ),
     PRIMARY KEY (event_id),
-    FOREIGN KEY (event_creator_id) REFERENCES Users(user_id)
+    FOREIGN KEY (event_creator_id) REFERENCES Users(user_id),
+    FOREIGN KEY (event_city_id) REFERENCES Cities(city_id)
 );
 
 -- TODO
