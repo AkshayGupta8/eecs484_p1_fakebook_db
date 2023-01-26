@@ -148,7 +148,7 @@ CREATE TABLE Tags (
     tag_created_time TIMESTAMP NOT NULL,
     tag_x NUMBER NOT NULL,
     tag_y NUMBER NOT NULL,
-    PRIMARY KEY (tag_photo_id, tag_subject_id)
+    PRIMARY KEY (tag_photo_id, tag_subject_id),
     FOREIGN KEY (tag_photo_id) REFERENCES Photos(photo_id),
     FOREIGN KEY (tag_subject_id) REFERENCES Users(user_id)
 );
